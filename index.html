@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E.N.A. - Força de Elite</title>
+    <!-- Inclui a biblioteca Tailwind CSS via CDN para estilização -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/script.js" defer></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-950 text-gray-200 overflow-x-hidden">
+
+    <!-- Fundo com efeito de paralaxe -->
+    <div id="parallax-bg" class="parallax-bg"></div>
+
+    <!-- Container principal com layout de duas colunas (barra lateral e conteúdo) -->
+    <div class="lg:flex">
+
+        <!-- Barra lateral fixa (sidebar) para navegação -->
+        <aside id="sidebar" class="bg-gray-800/80 backdrop-blur-md text-gray-400 p-6 flex flex-col fixed inset-y-0 w-64 lg:w-72 lg:static lg:flex-shrink-0 transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0 z-50 shadow-xl lg:shadow-none">
+            
+            <!-- Botão para fechar a barra lateral em telas pequenas -->
+            <button id="close-sidebar-btn" class="absolute top-4 right-4 text-gray-400 lg:hidden hover:text-white transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            
+            <!-- Título e Logo da unidade -->
+            <div class="flex items-center space-x-2 mb-8">
+                <img src="img/logo-ENA.png" class="h-20 w-20 text-green-500 drop-shadow-lg rounded-full " viewBox="0 0 20 20" fill="currentColor"></img>
+                <span class="font-bold text-white text-3xl font-oswald tracking-widest uppercase">E.N.A</span>
+            </div>
+            
+            <!-- Lista de navegação -->
+            <nav class="flex-grow">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="#" id="nav-home" class="nav-item flex items-center p-3 rounded-lg hover:bg-gray-700 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon h-6 w-6 text-gray-500 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            <span class="text-white font-oswald text-lg">Início</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="nav-about" class="nav-item flex items-center p-3 rounded-lg hover:bg-gray-700 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon h-6 w-6 text-gray-500 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <line x1="10" y1="9" x2="10" y2="9"></line>
+                            </svg>
+                            <span class="text-white font-oswald text-lg">Sobre Nós</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="nav-hierarchy" class="nav-item flex items-center p-3 rounded-lg hover:bg-gray-700 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon h-6 w-6 text-gray-500 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 3l4 4-4 4"></path>
+                                <path d="M10 3l4 4-4 4"></path>
+                                <path d="M15 3l4 4-4 4"></path>
+                                <path d="M3 14h18"></path>
+                            </svg>
+                            <span class="text-white font-oswald text-lg">Hierarquia</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="nav-doctrine" class="nav-item flex items-center p-3 rounded-lg hover:bg-gray-700 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon h-6 w-6 text-gray-500 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                            </svg>
+                            <span class="text-white font-oswald text-lg">Doutrina e Protocolos</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" id="nav-cursos" class="nav-item flex items-center p-3 rounded-lg hover:bg-gray-700 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon h-6 w-6 text-gray-500 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                <path d="M2 17l10 5 10"></path>
+                                <path d="M2 12l10 5 10"></path>
+                            </svg>
+                            <span class="text-white font-oswald text-lg">Cursos</span>
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="#" id="nav-servicos" class="nav-item flex items-center p-3 rounded-lg hover:bg-gray-700 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon h-6 w-6 text-gray-500 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                <path d="M2 17l10 5 10"></path>
+                                <path d="M2 12l10 5 10"></path>
+                            </svg>
+                            <span class="text-white font-oswald text-lg">Serviço</span>
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="#" id="nav-armamentos" class="nav-item flex items-center p-3 rounded-lg hover:bg-gray-700 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon h-6 w-6 text-gray-500 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m21.44 11.3-2.44-2.44v-3.8a1 1 0 0 0-1-1h-1.06a1 1 0 0 0-.71.29l-2.94 2.94a1 1 0 0 1-.7.29H8.8a1 1 0 0 0-1 1v2.51l-4.1 4.1a1 1 0 0 0 0 1.42l3.54 3.54a1 1 0 0 0 1.41 0L12.7 19h1.59a1 1 0 0 0 .7-.29l2.94-2.94a1 1 0 0 1 .71-.29h3.8a1 1 0 0 0 0-2l-2.44-2.18Z"></path>
+                            </svg>
+                            <span class="text-white font-oswald text-lg">Armamentos</span>
+                        </a>
+                    </li>
+
+
+
+                    <li>
+                        <a href="#" id="nav-medals" class="nav-item flex items-center p-3 rounded-lg hover:bg-gray-700 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon h-6 w-6 text-gray-500 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="6"/>
+                                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
+                            </svg>
+                            <span class="text-white font-oswald text-lg">Condecorações</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </nav>
+            
+            <!-- Rodapé da barra lateral -->
+            <div class="mt-8 text-xs text-gray-500 text-center">
+                &copy; E.N.A. 2025. Todos os direitos reservados.
+            </div>
+        </aside>
+
+        <!-- Botão para abrir a barra lateral em telas pequenas -->
+        <button id="open-sidebar-btn" class="fixed top-4 left-4 z-40 p-2 bg-gray-800 rounded-lg text-white lg:hidden shadow-lg hover:bg-gray-700 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+
+        <!-- Conteúdo principal com rolagem -->
+        <main class="flex-grow p-4 lg:p-8 relative overflow-hidden">
+            
+            <!-- Container das seções -->
+            <div id="section-content-container">
+            
+                <!-- Seção Início OK -->
+                <section id="home" class="section-container relative z-10 min-h-screen flex items-center justify-center text-center px-4 py-20">
+                    <div class="bg-gray-800/80 backdrop-blur-md p-6 sm:p-10 rounded-xl w-full max-w-4xl border border-orange-900 shadow-2xl">
+
+                        <img src="img/inicio_apresentacao.png" alt="" id="img-apresentacao">
+
+                    </div>
+                </section>
+        
+                <!-- Seção Sobre Nós OK -->
+                <section id="about" class="section-container relative z-10 py-20 px-4 min-h-screen hidden">
+                    <div class="max-w-4xl mx-auto bg-gray-800/80 backdrop-blur-md p-6 sm:p-8 rounded-xl border border-orange-900 shadow-2xl">
+                        <h2 class="text-4xl font-bold text-orange-700 text-center mb-8 font-oswald">SOBRE NÓS</h2>
+                        <p class="text-base md:text-lg text-gray-300 leading-relaxed mb-6">
+                            O Exército Nacional de Auroa é uma unidade MILSIM atuante em Ghost Recon: Breakpoint, exclusivamente na plataforma PLAYSTATION. Nosso foco é a simulação militar realista e o combate tático, operando em diversos cenários como as montanhas de Auroa, preferidas por grupos terroristas para esconderijos, e o 'inferno verde', onde combatemos o narcotráfico. Somos um grupo coeso, pautado pela honra, disciplina e a busca constante por excelência em cada operação.
+                        </p>
+                        <p class="text-base md:text-lg text-gray-300 leading-relaxed">
+                            Baseados na união de dois filmes e um documentário, somos inspirados nos Navy Seals da Marinha dos Estados Unidos e nas tropas do Exército Americano. A nossa filosofia é simples: "A cadeia de comando é sagrada." Ao ingressar, você se alinha à nossa missão e ao respeito aos superiores hierárquicos.
+                        </p>
+
+                       
+                        <div class="my-8 grid grid-cols-2 gap-4 justify-items-center">
+                            <img src="img/filme-dois.png" alt="Cena do Filme 2" class="h-40 w-40 object-cover rounded-lg p-2 drop-shadow-lg">
+                            <img src="img/filme-um.png" alt="Cena do Filme 1" class="h-40 w-40 object-cover rounded-lg p-2 drop-shadow-lg">
+
+                            <div class="col-span-2 flex justify-center">
+                                <img src="img/documentario.png" alt="Cena do Documentário" class="h-40 w-40 object-cover rounded-lg p-2 drop-shadow-lg">
+                            </div>
+                        </div>
+
+                        <div class="mt-8 grid md:grid-cols-2 gap-6 text-center">
+                            <div class="bg-gray-700/50 p-6 rounded-lg border border-gray-600">
+                                <h3 class="text-xl font-bold text-white mb-2 font-oswald">Nossa Missão</h3>
+                                <p class="text-gray-400 text-sm font-lato">Combater o terrorismo e o narcotráfico, restabelecendo a ordem em Auroa.</p>
+                            </div>
+                            <div class="bg-gray-700/50 p-6 rounded-lg border border-gray-600">
+                                <h3 class="text-xl font-bold text-white mb-2 font-oswald">Nossa Plataforma</h3>
+                                <p class="text-gray-400 text-sm font-lato">Exclusivamente no Ghost Recon: Breakpoint para PlayStation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+        
+                <!-- Seção Hierarquia OK -->
+                <section id="hierarchy" class="section-container relative z-10 py-20 px-4 min-h-screen hidden">
+                    <div class="max-w-6xl mx-auto">
+                        <h2 class="text-4xl font-bold text-orange-700 text-center mb-12 font-oswald">PROGRESSÃO HIERÁRQUICA</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <!-- Cards de hierarquia com efeitos de hover dinâmicos -->
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-orange-900 hover:border-orange-900 hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                                <div class="flex items-center space-x-4 mb-4">
+                                    <div class="w-16 h-16 flex-shrink-0 bg-orange-900/50 rounded-full flex items-center justify-center border-2 border-orange-900">
+                                        <span class="text-xl font-bold text-white-300 font-oswald">RC</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-white font-oswald">1ª Classe Recruta </h3>
+                                </div>
+                                <p class="text-gray-400 text-sm font-lato">Período de instrução e adaptação. O Recruta é avaliado para aptidão tática e alinhamento com a doutrina da unidade.</p>
+                            </div>
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-orange-900 hover:border-orange-900 hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                                <div class="flex items-center space-x-4 mb-4">
+                                    <div class="w-16 h-16 flex-shrink-0 bg-orange-900/50 rounded-full flex items-center justify-center border-2 border-orange-900">
+                                        <span class="text-xl font-bold text-white-300 font-oswald">SD</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-white font-oswald">2ª Classe Soldado</h3>
+                                </div>
+                                <p class="text-gray-400 text-sm font-lato">Beneficios da classe:</p>
+                                <p class="text-gray-400 text-sm font-lato">Manga longa, SMG, camuflagem facial, Cadpat TW
+                                Bota cor HCP Tiger, mira panorâmica, carregador estendido e 
+                                cano estendido.
+                                </p>
+                            </div>
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-orange-900 hover:border-orange-900 hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                                <div class="flex items-center space-x-4 mb-4">
+                                    <div class="w-16 h-16 flex-shrink-0 bg-orange-900/50 rounded-full flex items-center justify-center border-2 border-orange-900">
+                                        <span class="text-xl font-bold text-white-300 font-oswald">CB</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-white font-oswald">3ª Classe Cabo</h3>
+                                </div>
+                                <p class="text-gray-400 text-sm font-lato">Beneficios da classe:</p>
+                                <p class="text-gray-400 text-sm font-lato">SMG, ASR, mira zoom max 4x, bipé, trilhos, boca.</p>
+                            </div>
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-orange-900 hover:border-orange-900 hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                                <div class="flex items-center space-x-4 mb-4">
+                                    <div class="w-16 h-16 flex-shrink-0 bg-orange-900/50 rounded-full flex items-center justify-center border-2 border-orange-900">
+                                        <span class="text-xl font-bold text-white-300 font-oswald">SG</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-white font-oswald">4ª Classe Sargento</h3>
+                                </div>
+                                <p class="text-gray-400 text-sm font-lato">Beneficios da classe:</p>
+                                <p class="text-gray-400 text-sm font-lato">Capacete livre escolha(camuflado), Luva, DMR, Mochila, 
+                                Boina, brevê BFS urso e o capacete espartano, supressor, 
+                                balaclava, visão noturna</p>
+                            </div>
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-orange-900 hover:border-orange-900 hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                                <div class="flex items-center space-x-4 mb-4">
+                                    <div class="w-16 h-16 flex-shrink-0 bg-orange-900/50 rounded-full flex items-center justify-center border-2 border-orange-900">
+                                        <span class="text-xl font-bold text-white-300 font-oswald">ST</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-white font-oswald">5ª Classe Subtenente</h3>
+                                </div>
+                                <p class="text-gray-400 text-sm font-lato">Beneficios da classe:</p>
+                                <p class="text-gray-400 text-sm font-lato">LMG com mira</p>
+                            </div>
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-orange-900 hover:border-orange-900 hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                                <div class="flex items-center space-x-4 mb-4">
+                                    <div class="w-16 h-16 flex-shrink-0 bg-orange-900/50 rounded-full flex items-center justify-center border-2 border-orange-900">
+                                        <span class="text-xl font-bold text-white-300 font-oswald">TN</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-white font-oswald">6ª Classe Tenente</h3>
+                                </div>
+                                <p class="text-gray-400 text-sm font-lato">Beneficios da classe:</p>
+                                <p class="text-gray-400 text-sm font-lato">Sniper</p>
+                            </div>
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-orange-900 hover:border-orange-900 hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                                <div class="flex items-center space-x-4 mb-4">
+                                    <div class="w-16 h-16 flex-shrink-0 bg-orange-900/50 rounded-full flex items-center justify-center border-2 border-orange-900">
+                                        <span class="text-xl font-bold text-white-300 font-oswald">CT</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-white font-oswald">7ª Classe Capitão</h3>
+                                </div>
+                                <p class="text-gray-400 text-sm font-lato">Beneficios da classe:</p>
+                                <p class="text-gray-400 text-sm font-lato">Uso de todas as classes e drone amaros</p>
+                            </div>
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-orange-900 hover:border-orange-900 hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                                <div class="flex items-center space-x-4 mb-4">
+                                    <div class="w-16 h-16 flex-shrink-0 bg-orange-900/50 rounded-full flex items-center justify-center border-2 border-orange-900">
+                                        <span class="text-xl font-bold text-white-300 font-oswald">MJ</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-white font-oswald">8ª Classe Major</h3>
+                                </div>
+                                <p class="text-gray-400 text-sm font-lato">Beneficios da classe:</p>
+                                <p class="text-gray-400 text-sm font-lato">Estado Maior</p>
+                            </div>
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-orange-900 hover:border-orange-900 hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                                <div class="flex items-center space-x-4 mb-4">
+                                    <div class="w-16 h-16 flex-shrink-0 bg-orange-900/50 rounded-full flex items-center justify-center border-2 border-orange-900">
+                                        <span class="text-xl font-bold text-white-300 font-oswald">TCEL</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-white font-oswald">9ª Classe Tenente Coronel</h3>
+                                </div>
+                               <p class="text-gray-400 text-sm font-lato">Beneficios da classe:</p>
+                               <p class="text-gray-400 text-sm font-lato">Estado Maior</p>
+                            </div>
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-orange-900 hover:border-orange-900 hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                                <div class="flex items-center space-x-4 mb-4">
+                                    <div class="w-16 h-16 flex-shrink-0 bg-orange-900/50 rounded-full flex items-center justify-center border-2 border-orange-900">
+                                        <span class="text-xl font-bold text-white-300 font-oswald">TCEL</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-white font-oswald">10ª Classe Coronel</h3>
+                                </div>
+                                <p class="text-gray-400 text-sm font-lato">Estado Maior</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+        
+                <!-- Seção Doutrina OK-->
+                <section id="doctrine" class="section-container relative z-10 py-20 px-4 min-h-screen hidden">
+                    <div class="max-w-4xl mx-auto">
+                        <h2 class="text-4xl font-bold text-orange-700 text-center mb-12 font-oswald">DOUTRINA E PROTOCOLOS</h2>
+                        <div class="space-y-6">
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transition-all duration-300">
+                                <h3 class="text-xl font-bold text-white mb-2 font-oswald">Regras do E.N.A</h3>
+                                <ol class="list-decimal p-5"><!-- LISTA COM AS REGRAS-->
+                                    <li class="p-2">A cadeia de commando é 
+                                        sagrada, então ao ingressar no ENA, SIM! Você está de acordo em receber ordens e respeitar 
+                                        seus superiores hierárquicos. Qualquer falta de respeito deverá ser denunciada, qualquer ato 
+                                        de rebelião ou insubordinação será tratado como crime militar, passível de sanções decididas 
+                                        pelo Estado Maior(Grupo de 4 oficiais de maiores patentes que comandam o grupo). O uso 
+                                        correto de unformes e equipamentos não é facultativo
+                                    </li>
+                                    <li class="p-2"> O uso de Headset para se comunicar com a equipe é obrigatório</li>
+
+                                    <li class="p-2">Ao ser abatido, deverá aguardar o socorro em silêncio.</li>
+
+                                    <li class="p-2">Antes de toda operação ou serviço, terá uma reunião operacional no patio de formatura.</li>
+
+                                    <li class="p-2">O servidor permite apenas 4 slot de participantes, caso estejam 4 pessoas jogando e chegue outra pessoa, é obrigatório a divisão de equipes para que ninguem jogue sozinho</li>
+                                    <li class="p-2">O militar deverá se apresentar a reunião operacional equipado e uniformizado de acordo com a área 
+                                        que o mesmo foi destinado e seguindo o manual com os equipamentos autorizados para suas respectivas 
+                                        patentes.
+                                    </li>
+
+                                    <li class="p-2">Só é permitido reviver o companheiro em lugar seguro, fora da linha de tiro.</li>
+
+                                    <li class="p-2">Será apresentado um loadout padrão. A partir deste loadout, serão apresentados os 
+                                    itens que são desbloqueados com as promoções de patente de forma a somar com a
+                                    anterior, por exemplo: Se você foi promovido para rank 3 (Cabo), você será 
+                                    contemplado com novos equipamentos e também continuará autorizado a utilizer os 
+                                    equipamentos do rank 1 e 2.</li>
+
+                                    <li class="p-2">O tempo de promoções varia de acordo com o empenho do combatente. De Recruta 
+                                    para Soldado, o combatente deverá ter 5 dias jogados com a equipe. De Soldado até 
+                                    Sargento a carência de 03 meses para cada patente. A partir de Sargento, a carência 
+                                    vai para 6 meses</li>
+
+                                    <li class="p-2">Mortes por drones serão DESCONSIDERADAS</li>
+
+                                    <li class="p-2">O E.N.A é um grupo original, único. NÃO SOMOS partidários 
+                                    de comentários comparativos com outros grupos. A ética deve ser 
+                                    preservada. O que acontece em outros grupos, é responsabilidade 
+                                    dos seus respectivos comandantes. Agradecemos os elogios, mas não 
+                                    nos autonomeamos melhores do que ninguém, apenas acreditamos 
+                                    fielmente na nossa maneira de fazer MILSIM</li>
+
+                                    <li class="p-2">Do rank 01(SD) até 03(CB) o militar compõe o quadro do Efetivo VARIÁVEL, ou seja, o mesmo ainda não
+                                    possui carreira no ENA. A carreira é a partir da promoção para o rank 04 (SGT) através de uma prova teórica e 
+                                    de campo. Após a conclusão, o novo Sargento será contemplado com a maior honoraria do E.N.A, que é poder
+                                    usar o capacete espartano na farda, símbolo de pertencimento. Isso é para separar os curiosos dos que 
+                                    realmente querem carreira no ENA.</li>
+
+                                    <li class="p-2">O farm está autorizado, desde que, cientes das regras e das punições que estão passíveis caso violem as mesmas.</li>
+
+                                    <li class="p-2">Não está autorizado o uso do supressor e do laser no armamento.(Permitido apenas em casos especificos).</li>
+                                    <li class="p-2">A validação das medalhas de atirador deverão ser realizadas por meio de um teste, onde será agendado com 
+                                    o instructor o dia, a hora e o local para a realização do disparo.</li>
+                                </ol>
+
+                                <h3 class="text-xl font-bold text-white mb-2 font-oswald">Configurações Exigidas</h3>
+                                <p class="text-gray-400 text-sm font-lato">
+                                    Tudo no extremo e todo tipo de ajuda desligado, exceto descritivo de 
+                                    espólios, lembrete de missão e HUD comunicação. Desligar Azrael e 
+                                    patrulhas de helicóptero. Presença de drones reduzida. Dentro das 
+                                    configurações, você encontrará o volume de voz ou diálogo, colocar
+                                    TUDO no zero, para NÃO OUVIR OS DIÁLOGOS DOS INIMIGOS
+                                    <strong>O uniforme dos COMANDOS segue o padrão negro, universal</strong>
+                                </p>
+                            </div>
+
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transition-all duration-300">
+                                <h2 class="text-xl font-bold text-white mb-2 font-oswald">Padronização de Uniformes</h3>
+                                
+                                <ol class="list-decimal p-5"><!-- LISTA COM AS REGRAS-->
+                                    <h3 class="text-xl font-bold text-white mb-2 font-oswald">Uniforme Recruta</h3>
+                                    <li class="p-2">Camiseta M05, na cor preta</li>
+                                    <li class="p-2">Calça jeans</li>
+                                    <li class="p-2">Bota Preta</li>
+                                    <li class="p-2">Colete leve de operador de Drone preto</li>
+                                    <li class="p-2">Pistola sem mira, sem laser e sem silenciador</li>
+                                    <img src="img/uniforme-Recruta.jpg" class=" rounded-xl h-60 w-60" alt="uniforme de recruta">
+                                </ol>
+
+                                <ol class="list-decimal p-5"><!-- LISTA COM AS REGRAS-->
+                                    <h3 class="text-xl font-bold text-white mb-2 font-oswald">Uniforme Montanha</h3>
+                                    <li class="p-2">Qualquer camisa manga longa - cor UCP</li>
+                                    <li class="p-2">Qualquer calça - cor UCP</li>
+                                    <li class="p-2">Colete BlackHawk Strike - cor UCP</li>
+                                    <li class="p-2">Qualquer Coturno - cor UCP ou Cinza</li>
+                                    <li class="p-2">Cobertura Boina cinza ou capacete UCP</li>
+                                    <img src="img/uniforme-montanha.png" class=" rounded-xl h-60 w-60" alt="uniforme de recruta">
+                                </ol>
+
+                                <ol class="list-decimal p-5"><!-- LISTA COM AS REGRAS-->
+                                    <h3 class="text-xl font-bold text-white mb-2 font-oswald">Uniforme Selva</h3>
+                                    <li class="p-2">Qualquer camisa manga longa - cor Cadpat TW</li>
+                                    <li class="p-2">Qualquer calça - cor Cadpat TW</li>
+                                    <li class="p-2">Colete BlackHawk Strike - cor Cadpat TW</li>
+                                    <li class="p-2">Qualquer Coturno - cor Cadpat TW ou Cinza</li>
+                                    <li class="p-2">Cobertura Boina HCP Tiger ou capacete Cadpat TW</li>
+                                    <img src="img/uniforme-selva.png" class=" rounded-xl h-60 w-60" alt="uniforme de recruta">
+                                </ol>
+
+                                <ol class="list-decimal p-5"><!-- LISTA COM AS REGRAS-->
+                                    <h3 class="text-xl font-bold text-white mb-2 font-oswald">Uniforme Selva</h3>
+                                    <li class="p-2">Camisa de manga enrolada - cor Cinza</li>
+                                    <li class="p-2">Qualquer calça - cor Cinza TW</li>
+                                    <li class="p-2">Colete BlackHawk Strike - cor Preta</li>
+                                    <li class="p-2">Qualquer Coturno - cor Preta</li>
+                                    <li class="p-2">Cobertura boné militar - cor Cinza</li>
+                                    <img src="img/uniforme -servico.png" class=" rounded-xl h-60 w-60" alt="uniforme de recruta">
+                                </ol>
+
+
+                                <h3 class="text-xl font-bold text-white mb-2 font-oswald">Informações complementares</h3>
+                                <p class="text-gray-400 text-sm font-lato">
+                                    O uniforme do 2º Batalhão de Infantaria de Montanha segue o mesmo padrão do 
+                                    uniforme operacional de selva, porém, com a camuflagem da farda, do colete e do 
+                                    capacete na cor UCP. A boina a ser utilizada é na cor cinza, ou capacete UCP.
+                                    Sargentos, Subtenentes e Oficiais farão o uso OBRIGATÓRIO do urso e do capacete
+                                    espartano na farda, salvo, o uso da caveira, quando o militar for COMANDOS.
+                                    <strong>O uniforme dos COMANDOS segue o padrão negro, universal</strong>
+                                </p>
+                           
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Seção Cursos OK -->
+                <section id="cursos" class="section-container relative z-10 py-20 px-4 min-h-screen hidden">
+                    <div class="max-w-4xl mx-auto">
+                        <h2 class="text-4xl font-bold text-orange-700 text-center mb-12 font-oswald">Cursos</h2>
+                        <div class="space-y-6">
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transition-all duration-300">
+                                <h3 class="text-xl font-bold text-white mb-2 font-oswald">Forças Especiais:</h3>
+                                <p>
+                                    Os Comandos são as Forças Especiais do E.N.A. São combatentes 
+                                    treinados para operar nos diversos tipos de terreno, na água, montanha, 
+                                    selva e no ar. Estes combatentes passam por um curso bem rigoroso 
+                                    onde suas habilidades físicas, mentais e técnicas são testadas e 
+                                    aperfeiçoadas, para que saibam tomar uma decisão nos momentos de 
+                                    maior pressão. Eles entram onde nenhuma tropa consegue acesso e são 
+                                    solicitados quando não há mais opções
+                                </p>
+                                <ol class="list-decimal p-5">
+                                    <h4 class="text-xl font-bold text-white mb-2 font-oswald">Itens e habilidades desbloqueadas:</h4>
+                                    <li class="p-2">Informações Sigilosas</li> 
+                                </ol>
+                            </div>
+
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transition-all duration-300">
+                                <h3 class="text-xl font-bold text-white mb-2 font-oswald">Curso de Paraquedista</h3>
+                                <img src="img/cr-paraquedista.png" class=" rounded-xl h-40 w-70" alt="curso de paraquedista">
+                                <p class="text-gray-400 text-sm font-lato">A Vida é muito curta para ficar só no chão.
+                                    Você passa os dias olhando para cima, sonhando. Nós te ensinamos a olhar para baixo, voando. 🚀
+                                    Chega de "e se?". Chega de adiar. O curso de paraquedista é sua chance de transformar o medo em combustível e a gravidade em diversão
+                                </p>
+                            </div>
+
+
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transition-all duration-300">
+                                <h3 class="text-xl font-bold text-white mb-2 font-oswald">Curso de Paraquedista</h3>
+                                <img src="img/cr-selva.png" class=" rounded-xl h-40 w-70" alt="curso de selva">
+                                <p class="text-gray-400 text-sm font-lato"> A Selva Não Perdoa. Nós te Ensinamos a Revidar.
+                                    O asfalto te deixou confortável. A rotina te domesticou. Aqui, você vai reaprender a ouvir seu instinto. Vamos arrancar sua fraqueza e forjar um guerreiro no lugar. Não é sobre sobreviver, é sobre dominar.
+                                    O inferno verde te espera. Candidate-se.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- Seção serviços OK -->
+                <section id="servicos" class="section-container relative z-10 py-20 px-4 min-h-screen hidden">
+                    <div class="max-w-4xl mx-auto">
+                        <h2 class="text-4xl font-bold text-orange-700 text-center mb-12 font-oswald">Informações de Serviço e Base</h2>
+                        <div class="space-y-6">
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transition-all duration-300">
+                                <h3 class="text-xl font-bold text-white mb-2 font-oswald">O que são Serviços</h3>
+                                <p>
+                                    São atividades obrigatórias e executadas por militares do 
+                                    mundo inteiro. Trata-se de rondas realizadas por viaturas, seja terrestres ou aquáticas
+                                    no objetivo de fiscalizar rodovias e rios. O combatente deverá realizar pelo menos um 
+                                    serviço por semana de 1 hora, gravar no youtube e produzir um relatório com os
+                                    seguintes dados:
+                                </p>
+                                <ol class="list-decimal p-5">
+                                    <li class="p-2">Tipo de Serviço: (Terrestre / aquático)</li>
+                                    <li class="p-2">Data inicio e data fim</li> 
+                                    <li class="p-2">horario do inicio e do final do serviço</li> 
+                                    <li class="p-2">Apreensões: número de carga apreendida com foto e número de traficantes presos</li> 
+                                    <li class="p-2">Testemunhas: quem estava presente</li> 
+                                </ol>
+                            </div>
+
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transition-all duration-300">
+                                <h3 class="text-xl font-bold text-white mb-2 font-oswald">1ª Batalhão de Infantaria de Montanha</h3>
+                                <img src="img/mapa-base-montanha.png" class=" rounded-xl h-40 w-90" alt="curso de paraquedista">
+                                <p class="text-gray-400 text-sm font-lato">localizado na província da Montanha
+                                        Good Hope, próximo ao bivaque Serrania Misty. É importante incluir nas
+                                        configurações as lojas no bivaque e a garagem para que possamos utilizar os
+                                        equipamentos fornecidos pelo Exército nas localidades dos quartéis, e não somente em
+                                        Erewon. A seguir, mostraremos no mapa a localidade exata do 2º Batalhão
+                                </p>
+                            </div>
+
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transition-all duration-300">
+                                <h3 class="text-xl font-bold text-white mb-2 font-oswald">2ª Batalhão de Infantaria da Selva</h3>
+                                <img src="img/mapa-base-selva.png" class=" rounded-xl h-40 w-70" alt="curso de paraquedista">
+                                <p class="text-gray-400 text-sm font-lato">localizado na província de Fen Bog, nome Estação Aérea Airship, próximo ao Bivaque Lago Diamond.
+                                </p>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Seção armamentos OK -->
+                <section id="armamentos" class="section-container relative z-10 py-20 px-4 min-h-screen hidden">
+                    <div class="max-w-4xl mx-auto">
+                        <h2 class="text-4xl font-bold text-orange-700 text-center mb-12 font-oswald">Informações Sobre o Armamento</h2>
+                        <div class="space-y-6">
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transition-all duration-300">
+                                <h3 class="text-xl font-bold text-white mb-2 font-oswald">Referente aos Armamentos</h3>
+                                <p>
+                                    O combatente, a partir de Soldado, deverá escolher dois armamentos
+                                    disponíveis no arsenal do E.N.A e de acordo com a sua patente e 
+                                    informa-los no grupo da reserva de armamento. Após a publicação
+                                    oficial, são esses os armamentos que o combatente estará autorizado a 
+                                    utilizar no respectivo mês, podendo mudar ao início de cada mês pelo
+                                    mesmo processo
+                                </p>
+
+                            </div>
+
+                            <!--SMG-->
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transition-all duration-300">
+
+                                <h3 class="text-xl font-bold text-white mb-2 font-oswald">CLASSE - SMG</h3>
+                                <ol class="list-decimal p-5">
+                                        <li class="p-2">SN-9mm</li>
+                                        <li class="p-2">MP5</li> 
+                                        <li class="p-2">SMG Echelon</li> 
+                                        <li class="p-2">UMP CQC</li> 
+                                    </ol>
+                                <div class="my-8 grid grid-cols-2 gap-4 justify-items-center">
+                                    
+                                    <img src="img/SN-9mm.png" class=" rounded-xl h-100 w-100" alt="smg">
+                                    <img src="img/smg-echelon.png" class=" rounded-xl h-100 w-100" alt="smg">
+                                    <img src="img/mp5.png" class=" rounded-xl h-100 w-100" alt="smg">
+                                    <img src="img/ump-cqc.png" class=" rounded-xl h-100 w-100" alt="smg">
+                                </div>
+                                
+                            </div>
+
+                            <!--ASR-->
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transition-all duration-300">
+
+                                <h3 class="text-xl font-bold text-white mb-2 font-oswald">CLASSE - ASR</h3>
+                                    <ol class="list-decimal p-5">
+                                        <li class="p-2">416</li>
+                                        <li class="p-2">FAL</li> 
+                                        <li class="p-2">M4A1</li> 
+                                        <li class="p-2">ACR</li>
+                                        <li class="p-2">K1A</li>
+                                    </ol>
+                                    <img src="img/tres-ASR.png" class=" rounded-xl h-100 w-100" alt="smg">
+                                <div class="my-8 grid grid-cols-2 gap-4 justify-items-center">
+                                    
+                                    
+                                    <img src="img/K1A.png" class=" rounded-xl h-100 w-100" alt="smg">
+                                    <img src="img/ACR.png" class=" rounded-xl h-100 w-100" alt="smg">
+
+                                </div>
+                                
+                            </div>
+
+
+                            <!--DMR-->
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transition-all duration-300">
+
+                                <h3 class="text-xl font-bold text-white mb-2 font-oswald">CLASSE - DMR</h3>
+                                    <ol class="list-decimal p-5">
+                                        <li class="p-2">MK14</li>
+                                        <li class="p-2">G28</li> 
+                                        <li class="p-2">OTS-03</li> 
+                                        <li class="p-2">M110</li>
+                                        
+                                    </ol>
+                                    
+                                <div class="my-8 grid grid-cols-2 gap-4 justify-items-center">
+                                    
+                                    <img src="img/mk14.png" class=" rounded-xl h-100 w-100" alt="smg">
+                                    <img src="img/g28.png" class=" rounded-xl h-100 w-100" alt="smg">
+                                    <img src="img/ots-03.png" class=" rounded-xl h-100 w-100" alt="smg">
+                                    <img src="img/m110.png" class=" rounded-xl h-100 w-100" alt="smg">
+
+                                </div>
+                                
+                            </div>
+
+                            <!--LMG-->
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transition-all duration-300">
+
+                                <h3 class="text-xl font-bold text-white mb-2 font-oswald">CLASSE - LMG</h3>
+                                    <ol class="list-decimal p-5">
+                                        <li class="p-2">6P41</li>
+                                        <li class="p-2">MK48</li> 
+                                    </ol>
+                                    
+                                <div class="my-8 grid grid-cols-2 gap-4 justify-items-center">
+                                    
+
+                                    <img src="img/6p41.png" class=" rounded-xl h-100 w-100" alt="smg">
+                                    <img src="img/mk48.png" class=" rounded-xl h-100 w-100" alt="smg">
+
+                                </div>
+                                
+                            </div>
+
+                            <!--SHOTGUN-->
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transition-all duration-300">
+
+                                <h3 class="text-xl font-bold text-white mb-2 font-oswald">CLASSE - SHOTGUN</h3>
+                                    <ol class="list-decimal p-5">
+                                        <li class="p-2">M4 Assalto</li> 
+                                    </ol>
+                                                                   
+                                    <img src="img/m4-assalto.png" class=" rounded-xl h-100 w-100" alt="smg">
+                               
+                               
+                            </div>
+
+                            <!--Pistola-->
+                            <div class="bg-gray-800/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transition-all duration-300">
+
+                                <h3 class="text-xl font-bold text-white mb-2 font-oswald">CLASSE - Pistola</h3>
+                                <p>A pistola a ser utilizada é aquela que vem no jogo e SÓ. Sargentos e Oficiais estão autorizados a utilizarem a F40 Caracal.</p>
+                               
+                               
+                            </div>
+
+
+                        </div>
+                    </div>
+                </section>
+        
+                <!-- Seção Condecorações OK -->
+                <section id="medals" class="section-container relative z-10 py-20 px-4 min-h-screen hidden">
+                    <div class="max-w-6xl mx-auto">
+
+                        <h2 class="text-4xl font-bold text-orange-700 text-center mb-12 font-oswald">CONDECORAÇÕES</h2>
+                        <p class="text-center text-lg text-gray-400 mb-10 font-lato">
+                            Reconhecimentos concedidos por atos de bravura, mérito e serviços excepcionais.
+                        </p>
+
+                        <!-- Cards de medalhas com SVGs e efeitos de hover dinâmicos -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                            
+                            <div class="group bg-gray-800/80 backdrop-blur-md p-8 rounded-xl shadow-lg border border-gray-700 hover:border-orange-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 flex flex-col items-center text-center">
+                                <img src="img/medalha-cruz-combate-primeira-classe-ouro.png" class="h-20 w-30 text-green-500 group-hover:text-green-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></img>
+                                <h3 class="text-xl font-bold text-white mt-4 font-oswald">Medalha Cruz de Combate 1ª Classe, ouro</h3>
+                                <p class="text-gray-400 text-sm mt-2 font-lato">
+                                    Concedida aos militares que praticaram atos de bravura; ou revelaram espírito de sacrifício no desempenho de missões em combate;
+                                    e, às Unidades que se destacarem na luta.
+                                </p>
+                            </div>
+
+                            <div class="group bg-gray-800/80 backdrop-blur-md p-8 rounded-xl shadow-lg border border-gray-700 hover:border-orange-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 flex flex-col items-center text-center">
+                                <img src="img/medalha-cruz-combate-segunda-classe-prata.png" class="h-20 w-30 text-green-500 group-hover:text-green-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></img>
+                                <h3 class="text-xl font-bold text-white mt-4 font-oswald">Medalha Cruz de Combate 2ª Classe, Prata</h3>
+                                <p class="text-gray-400 text-sm mt-2 font-lato">
+                                    Conferida aos participantes de feitos excepcionais, praticados em conjunto por vários militares
+                                </p>
+                            </div>
+
+
+                            <div class="group bg-gray-800/80 backdrop-blur-md p-8 rounded-xl shadow-lg border border-gray-700 hover:border-orange-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 flex flex-col items-center text-center">
+                                <img src="img/medalha-sangue-brasil.png" class="h-20 w-30 text-green-500 group-hover:text-green-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></img>
+                                <h3 class="text-xl font-bold text-white mt-4 font-oswald">Medalha Sangue do Brasil</h3>
+                                <p class="text-gray-400 text-sm mt-2 font-lato">
+                                    Criada por Dec - Lei 7709, de 5 jul 1945. Destinou-se a agraciar os oficiais, praças, assemelhados e civis, 
+                                    destacados para o teatro de operações, e que aí hajam sido feridos em conseqüência
+                                    de ação objetiva do inimigo. A medalha é de bronze.
+                                </p>
+                            </div>
+
+
+                            <div class="group bg-gray-800/80 backdrop-blur-md p-8 rounded-xl shadow-lg border border-gray-700 hover:border-orange-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 flex flex-col items-center text-center">
+                                <img src="img/medalha-campanha-.png" class="h-20 w-30 text-green-500 group-hover:text-green-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></img>
+                                <h3 class="text-xl font-bold text-white mt-4 font-oswald">Medalha de Campanha</h3>
+                                <p class="text-gray-400 text-sm mt-2 font-lato">
+                                    Conferida aos militares da 
+                                    ativa e da reserva do Exército e assemelhados, que participaram de operações 
+                                    de guerra, sem nota desabonadora. Também foi conferida a militares dos 
+                                    exércitos das nações amigas e aliadas que tenham tomado parte da campanha, 
+                                    incorporados às nossas forças
+                                </p>
+                            </div>
+
+
+                            <div class="group bg-gray-800/80 backdrop-blur-md p-8 rounded-xl shadow-lg border border-gray-700 hover:border-orange-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 flex flex-col items-center text-center">
+                                <img src="img/medalha-pacificador-art-primeiro.png" class="h-20 w-30 text-green-500 group-hover:text-green-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></img>
+                                <h3 class="text-xl font-bold text-white mt-4 font-oswald">Medalha do Pacificador com Palma Art. 1º</h3>
+                                <p class="text-gray-400 text-sm mt-2 font-lato">
+                                    será concedida pelo Comandante do Exército: 
+                                    I - aos militares do Exército que, em tempo de paz, no exercício de suas funções 
+                                    ou no cumprimento de missões de caráter militar, tenham se distinguido por suas 
+                                    atitudes, dedicação, abnegação e capacidade profissional; II - aos militares do 
+                                    Exército que tenham contribuído para elevar o prestígio do Exército brasileiro 
+                                    junto às Forças Armadas de nações amigas, bem como para desenvolver, com elas, 
+                                    vínculos de amizade e cooperação
+                                </p>
+                            </div>
+
+
+                            <div class="group bg-gray-800/80 backdrop-blur-md p-8 rounded-xl shadow-lg border border-gray-700 hover:border-orange-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 flex flex-col items-center text-center">
+                                <img src="img/medalha-pacificador-palma-art-segundo.png" class="h-20 w-30 text-green-500 group-hover:text-green-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></img>
+                                <h3 class="text-xl font-bold text-white mt-4 font-oswald">Medalha do Pacificador com Palma Art. 2º</h3>
+                                <p class="text-gray-400 text-sm mt-2 font-lato">
+                                        A Medalha do Pacificador com 
+                                        Palma será concedida aos militares e aos civis brasileiros que, em tempo de paz, 
+                                        no exercício de sua função ou no cumprimento de missões de caráter militar, 
+                                        tenham se distinguido por atos pessoais de abnegação, coragem e bravura, com 
+                                        risco de vida
+                                </p>
+                            </div>
+
+
+                            
+                            <div class="group bg-gray-800/80 backdrop-blur-md p-8 rounded-xl shadow-lg border border-gray-700 hover:border-orange-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 flex flex-col items-center text-center">
+                                <img src="img/medalha-atirador-terceira-classe-bronze.png" class="h-20 w-30 text-green-500 group-hover:text-green-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></img>
+                                <h3 class="text-xl font-bold text-white mt-4 font-oswald">Medalha do Atirador, 3ª Classe, bronze</h3>
+                                <p class="text-gray-400 text-sm mt-2 font-lato">
+                                    Destinada aos militares que tiveram abate confirmado e 
+                                    testemunhado de 350 metros de distância
+                                </p>
+                            </div>
+
+
+                            <div class="group bg-gray-800/80 backdrop-blur-md p-8 rounded-xl shadow-lg border border-gray-700 hover:border-orange-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 flex flex-col items-center text-center">
+                                <img src="img/medalha-atirador-segunda-classe-prata.png" class="h-20 w-30 text-green-500 group-hover:text-green-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></img>
+                                <h3 class="text-xl font-bold text-white mt-4 font-oswald">Medalha do Atirador, 2ª Classe, prata</h3>
+                                <p class="text-gray-400 text-sm mt-2 font-lato">
+                                    Destinada aos militares que tiveram abate 
+                                    confirmado e testemunhado de 600 metros de distância.
+                                </p>
+                            </div>
+
+                            <div class="group bg-gray-800/80 backdrop-blur-md p-8 rounded-xl shadow-lg border border-gray-700 hover:border-orange-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 flex flex-col items-center text-center">
+                                <img src="img/medalha-atirador-primeira-classe-ouro.png" class="h-20 w-30 text-green-500 group-hover:text-green-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></img>
+                                <h3 class="text-xl font-bold text-white mt-4 font-oswald">Medalha do Atirador, 1ª Classe, ouro</h3>
+                                <p class="text-gray-400 text-sm mt-2 font-lato">
+                                    Destinada aos militares que tiveram abate 
+                                    confirmado e testemunhado de 1 km metros de distância
+                                </p>
+                            </div>
+
+
+                            <div class="group bg-gray-800/80 backdrop-blur-md p-8 rounded-xl shadow-lg border border-gray-700 hover:border-orange-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 flex flex-col items-center text-center">
+                                <img src="img/medalha-honra-gra-cruz.png" class="h-20 w-30 text-green-500 group-hover:text-green-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></img>
+                                <h3 class="text-xl font-bold text-white mt-4 font-oswald">Medalha de Honra Grã-Cruz</h3>
+                                <p class="text-gray-400 text-sm mt-2 font-lato">
+                                    A mais alta condecoração militar brasileira. Destinada 
+                                    aqueles por ato de bravura, serviços prestados e atos considerados excepcionais e 
+                                    reconhecidos pelo Comandante Geral da FTN
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
