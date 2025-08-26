@@ -1,129 +1,91 @@
-/* Importa as fontes Lato e Oswald do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Oswald:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Libertinus+Sans:ital,wght@0,400;0,700;1,400&display=swap');
 
-/* Define variáveis CSS para as cores */
 :root {
-    --primary-color: #c8771b; /* Verde vibrante */
-    --secondary-color: #16a34a; /* Verde mais escuro */
-    --bg-dark: #0f172a; /* Azul marinho escuro */
-    --bg-light: #1e293b; /* Cinza azulado */
-    --text-light: #f1f5f9; /* Cinza claro */
-    --text-muted: #94a3b8; /* Cinza desbotado */
+    --primary-color: #3b82f6; /* Azul do Tailwind */
+    --bg-dark: #030712; /* Quase preto */
+    --text-light: #f1f5f9;
+    --text-muted: #94a3b8;
 }
 
 body {
-    font-family: "Libertinus Sans", sans-serif;
+    font-family: 'Lato', sans-serif;
     background-color: var(--bg-dark);
     color: var(--text-light);
+    position: relative; /* Necessário para o posicionamento do spotlight */
 }
 
-/* Estilos para o fundo com efeito de paralaxe */
+/* Efeito de Spotlight */
+.spotlight {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px; /* Tamanho do círculo de luz */
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0) 70%);
+    pointer-events: none; /* Permite clicar através do elemento */
+    transform: translate(-50%, -50%); /* Centraliza o efeito no cursor */
+    transition: transform 0.1s ease-out, width 0.3s ease-out, height 0.3s ease-out;
+    z-index: 9999;
+}
+
+
 .parallax-bg {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('https://placehold.co/1920x1080/0f172a/94a3b8?text=E.N.A.+MILSIM+Force');
+    background-image: url('img/inicio_apresentacao.png'); /* Sugestão: Use uma imagem de fundo mais genérica aqui */
     background-size: cover;
     background-position: center;
+    background-attachment: fixed; /* Efeito paralaxe mais simples e performático */
     opacity: 0.1;
-    transform: translateY(0);
-    transition: transform 0.1s ease-out;
     z-index: -1;
 }
 
-#img-apresentacao{
-    border-radius: 15px;
+/* Transições de Seção (Simplificado) */
+.section-container {
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
-.bt-teste{
-    background: linear-gradient(to bottom, #7a6804c8, #2a1302);
-
+.section-container.hidden {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
 }
 
-/* Classes para animação de transição entre seções */
-.section-container.leaving {
-    animation: fadeOut 0.5s ease-in-out forwards;
+/* Animação de entrada para elementos ao rolar */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-.section-container.entering {
-    animation: fadeIn 0.8s ease-out forwards;
+.scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 
-
-
-
-
-
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+/* Estilo para link de navegação ativo */
+.nav-item.active {
+    background-color: rgba(59, 130, 246, 0.2);
+    box-shadow: inset 3px 0 0 0 var(--primary-color);
 }
 
-@keyframes fadeOut {
-    from { opacity: 1; transform: translateY(0); }
-    to { opacity: 0; transform: translateY(-20px); }
-}
-
-/* Estilização para o indicador do link de navegação ativo */
-.nav-item.active .nav-icon {
+.nav-item.active span {
     color: var(--primary-color);
+    font-weight: bold;
 }
 
+/* Efeito Máquina de Escrever */
+#typewriter-title::after, #typewriter-subtitle::after {
+    content: '|';
+    animation: blink 0.7s infinite;
+}
 
-
-
-
-
-
-
-
-
-  /* O container é importante para posicionar o overlay */
-        .video-container {
-            width: 100%;
-            max-width: 800px;
-            border-radius: 8px;
-            overflow: hidden; /* Garante que o overlay não vaze */
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            margin-bottom: 20px;
-        }
-        video {
-            width: 100%;
-            display: block; /* Remove espaço extra abaixo do vídeo */
-        }
-        /* Estilo do nosso botão de play sobreposto */
-        #video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: opacity 0.3s ease;
-        }
-        /* Esconde o overlay suavemente quando ele tem a classe 'hidden' */
-        #video-overlay.hidden {
-            opacity: 0;
-            pointer-events: none; /* Impede que o overlay bloqueie os controles do vídeo */
-        }
-        /* Ícone de play (feito com CSS) */
-        .play-icon {
-            width: 0;
-            height: 0;
-            border-top: 30px solid transparent;
-            border-bottom: 30px solid transparent;
-            border-left: 50px solid white;
-            transition: transform 0.2s ease;
-        }
-        #video-overlay:hover .play-icon {
-            transform: scale(1.1);
-        }
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
