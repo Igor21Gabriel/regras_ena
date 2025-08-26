@@ -34,6 +34,7 @@ function initNavigation() {
 
     // Função para mostrar a seção correta e atualizar o estado da navegação
     const showSection = (hash) => {
+        // (O resto desta função permanece igual)
         const sectionId = hash ? hash.substring(1) : 'home';
         
         sections.forEach(section => {
@@ -52,22 +53,24 @@ function initNavigation() {
             }
         });
 
-        // Fecha a sidebar em telas pequenas após a navegação
         if (window.innerWidth < 1024) {
             sidebar.classList.add('-translate-x-full');
         }
         
-        // Rola para o topo da página
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     // Adiciona o evento de clique a todos os links de navegação
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            e.preventDefault();
-            showSection(link.hash);
-            // Atualiza a URL sem recarregar a página (opcional, mas bom para UX)
-            history.pushState(null, '', link.hash);
+            // VERIFICA SE O LINK CLICADO NÃO É O DE DOWNLOAD
+            if (link.id !== 'download-pdf-link') {
+                e.preventDefault(); // Impede a ação padrão apenas para links de navegação
+                showSection(link.hash);
+                history.pushState(null, '', link.hash);
+            }
+            // Se for o link de download, o código acima é ignorado
+            // e o navegador executa a ação padrão (baixar o arquivo).
         });
     });
 
